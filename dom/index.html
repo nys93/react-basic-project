@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- INJECTING REACT USING CDN-->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+    ></script>
+    <div id="root"></div>
+
+    <script>
+      const rootElement = document.getElementById("root");
+      // const elementV = document.createElement("h1");
+      const elemement = React.createElement("h1", {
+        children: "Hello"
+      });
+      // elementV.textContent = "Hello, World!";
+      ReactDOM.render(elemement, rootElement);
+      // rootElement.appendChild(element);
+    </script>
+  </body>
+</html>
