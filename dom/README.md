@@ -1,8 +1,9 @@
-#DOM
+## DOM
 
-- The DOM represents a document with a logical tree
+The DOM represents a document with a logical tree
 
-#Vanilla JS
+## Vanilla JS
 
-- pure Javascript
-  : JavaScript itself without using a specific library or framework.
+Pure Javascript
+<br/>
+👉 JavaScript itself without using a specific library or framework.
