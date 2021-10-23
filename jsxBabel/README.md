@@ -1,11 +1,11 @@
-#JSX
+## JSX
+Extended grammar of JavaScript that is neither text nor HTML.
 
-- Extended grammar of JavaScript that is neither text nor HTML.
+## BABEL
 
-#BABEL
+JavaScript Complier <br/>
+👉 A language interpreter, a program that translates one programming language into another.
 
-- JavaScript Complier
-  : A language interpreter, a program that translates one programming language into another.
 
 | JSX/Babel               | Summary                              |
 | ----------------------- | ------------------------------------ |
