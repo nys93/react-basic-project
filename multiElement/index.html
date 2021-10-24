@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- INJECTING REACT USING CDN-->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <div id="root">
+      <!-- <h1>Hi</h1>
+      <h3>Bye</h3>
+      <h5>Children</h5> -->
+    </div>
+    <script type="text/babel">
+      const rootElement = document.getElementById("root");
+      const element = (
+        /* 1st : this works, but box div created under root div.
+        <div className = "box"
+          children={[
+            // React.createElement("h1", null, "Hi"),
+            // React.createElement("h3", null, "Bye"),
+            // React.createElement("h5", null, "Children")
+          ]}
+        /> 
+        */
+
+        /* 2nd : this is created under root div and became simpler than 1st Code.
+        <React.Fragment
+          children={[
+            <h1>Hi</h1>
+            <h3>Bye</h3>
+            <h5>Children</h5>
+          ]}
+        /> 
+        */
+
+        // 3rd : Simplest code!
+        <>
+          <h1>Hi</h1>
+          <h3>Bye</h3>
+          <h5>Children</h5>
+        </>
+      );
+
+      console.log(element);
+
+      ReactDOM.render(element, rootElement);
+    </script>
+  </body>
+</html>
