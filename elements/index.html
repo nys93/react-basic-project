@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- INJECTING REACT USING CDN-->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <div id="root"></div>
+    <script type="text/babel">
+      const rootElement = document.getElementById("root");
+      /* Method 1: Function
+        const paint = (title, description) => (
+          <>
+            <h1>{title}</h1>
+            <h3>{description}</h3>
+          </>
+        );
+
+        const element = (
+          <>
+            {paint("Good", "good")}
+            {paint("Great", "great")}
+            {paint("Awesome", "awesome")}
+          </>
+        );
+      */
+
+      // Method2: Custom Element
+      const Paint = ({ title, description, children }) => {
+        return (
+          <>
+            <h1>{title}</h1>
+            <h3>{description}</h3>
+            {children}
+          </>
+        );
+      };
+
+      const Good = () => <h3>unlimited children</h3>;
+      const element = (
+        <>
+          <Paint title="Good" description="good">
+            hi
+          </Paint>
+          <Paint title="Great" description="great" />
+          <Paint title="Awesome" description="awesome" />
+          <Good />
+          <Good />
+          <Good />
+          <Good />
+        </>
+      );
+
+      ReactDOM.render(element, rootElement);
+    </script>
+  </body>
+</html>
