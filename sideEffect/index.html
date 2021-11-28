@@ -15,26 +15,38 @@
     <script type="text/babel">
       const rootElement = document.getElementById("root");
 
-      const state = { keyword: "", typing: false, state: "" };
-
       const App = () => {
+        const [keyword, setKeyword] = React.useState(() => {
+          console.log("initialize");
+          return window.localStorage.getItem("keyword");
+        });
+
+        const [result, setResult] = React.useState("");
+        const [typing, setTyping] = React.useState(false);
+
+        console.log("render");
+
+        React.useEffect(() => {
+          console.log("effect");
+          window.localStorage.setItem("keyword", keyword);
+        }, [keyword]);
+        // [] -> dependency array
+
         function handleChange(event) {
           window.localStorage.setItem("keyword", event.target.value);
+          setKeyword(event.target.value);
+          setTyping(false);
         }
         function handleClick(event) {
-          setState({
-            typing: false,
-            result: `we find results of ${state.keyword}`
-          });
+          setTyping(false);
+          setResult(`we find results of ${keyword}`);
         }
+
         return (
           <>
-            <input onChange={handleChange} />
+            <input onChange={handleChange} value={keyword} />
             <button onClick={handleClick}>search</button>
-            <p>
-              {" "}
-              {state.typing ? `Looking for ${state.keyword}` : state.result}
-            </p>
+            <p> {typing ? `Looking for ${keyword}` : result}</p>
           </>
         );
       };
