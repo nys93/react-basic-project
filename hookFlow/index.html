@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- INJECTING REACT USING CDN-->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <div id="root"></div>
+    <script type="text/babel">
+      const rootElement = document.getElementById("root");
+
+      const App = () => {
+        console.log("App render start");
+
+        const [show, setShow] = React.useState(() => {
+          console.log("App useState");
+          return false;
+        });
+
+        // print everytime
+        React.useEffect(() => {
+          console.log("App useEffect, no deps");
+        });
+
+        // print only for first time it rendered
+        React.useEffect(() => {
+          console.log("App useEffect, empty deps");
+        }, []);
+
+        // print when show value is changed
+        React.useEffect(() => {
+          console.log("App useEffect, [show]");
+        }, [show]);
+
+        function handleClick() {
+          // useState originally contains previous value as first parameter
+          setShow((prev) => !prev);
+        }
+
+        return (
+          <>
+            <button onClick={handleClick}>Search</button>
+            {show ? (
+              <>
+                <input />
+                <p></p>
+              </>
+            ) : null}
+          </>
+        );
+      };
+
+      ReactDOM.render(<App />, rootElement);
+    </script>
+  </body>
+</html>
