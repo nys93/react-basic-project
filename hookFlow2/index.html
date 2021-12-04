@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- INJECTING REACT USING CDN-->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <div id="root"></div>
+    <script type="text/babel">
+      const rootElement = document.getElementById("root");
+
+      const Child = () => {
+        console.log("    Child render start");
+        const [text, setText] = React.useState(() => {
+          console.log("    Child useState");
+          return "";
+        });
+
+        // print everytime
+        React.useEffect(() => {
+          console.log("  Child useEffect, no deps");
+          return () => {
+            console.log("  Child useEffect [cleanUp], no deps");
+          };
+        });
+
+        // print only for first time it rendered
+        React.useEffect(() => {
+          console.log("  Child useEffect, empty deps");
+          return () => {
+            console.log("  Child useEffect [cleanUp], empty deps");
+          };
+        }, []);
+
+        // print when show value is changed
+        React.useEffect(() => {
+          console.log("  Child useEffect, [text]");
+          return () => {
+            console.log("  Child useEffect [cleanUp], [text]");
+          };
+        }, [text]);
+
+        function handleChange(event) {
+          setText(event.target.value);
+        }
+        const element = (
+          <>
+            <input onChange={handleChange} />
+            <p>{text}</p>
+          </>
+        );
+        console.log("    Child render end");
+        return element;
+      };
+
+      const App = () => {
+        console.log("App render start");
+
+        const [show, setShow] = React.useState(() => {
+          console.log("App useState");
+          return false;
+        });
+
+        // print everytime
+        React.useEffect(() => {
+          console.log("App useEffect, no deps");
+          return () => {
+            console.log("App useEffect [cleanUp], no deps");
+          };
+        });
+
+        // print only for first time it rendered
+        React.useEffect(() => {
+          console.log("App useEffect, empty deps");
+          return () => {
+            console.log("App useEffect [cleanUp], empty deps");
+          };
+        }, []);
+
+        // print when show value is changed
+        React.useEffect(() => {
+          console.log("App useEffect, [show]");
+          return () => {
+            console.log("App useEffect [cleanUp], [show]");
+          };
+        }, [show]);
+
+        function handleClick() {
+          // useState originally contains previous value as first parameter
+          setShow((prev) => !prev);
+        }
+        console.log("App render end");
+        return (
+          <>
+            <button onClick={handleClick}>Search</button>
+            {show ? <Child /> : null}
+          </>
+        );
+      };
+
+      ReactDOM.render(<App />, rootElement);
+    </script>
+  </body>
+</html>
